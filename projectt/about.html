@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flute · about the instrument</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: #2c3e4f;
+        }
+        .header {
+            background: #1e3d45;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+        .header h1 a {
+            color: #f2e0c9;
+            text-decoration: none;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav li a {
+            color: #efebdd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav li a:hover {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        .nav li a.active {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        .page-header {
+            position: relative;
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            text-shadow: 2px 2px 10px #1d2e38;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .page-header h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            font-weight: 300;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
+            padding: 1rem 3rem;
+            border-radius: 70px 12px;
+        }
+        .content {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 40px 12px 40px 12px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .content h3 {
+            font-size: 2rem;
+            color: #1e3d45;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #dbb88c;
+            padding-left: 1.5rem;
+        }
+        .content h4 {
+            font-size: 1.5rem;
+            color: #2c5a6b;
+            margin: 1.5rem 0 1rem;
+        }
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #2c3e4f;
+        }
+        .image-placeholder {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .image-placeholder img {
+            max-width: 100%;
+            border-radius: 40px 12px 40px 12px;
+            box-shadow: 0 20px 25px -8px #3f4e5b;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #5d6e7a;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .info-card {
+            background: rgba(255,255,255,0.5);
+            padding: 1.5rem;
+            border-radius: 30px 8px 30px 8px;
+            border: 1px solid rgba(219, 184, 140, 0.3);
+        }
+        .info-card h5 {
+            font-size: 1.3rem;
+            color: #1e3d45;
+            margin-bottom: 0.8rem;
+        }
+        /* 时钟 */
+        .live-clock {
+            background: #3f5b66;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #f3e3d3;
+        }
+        footer {
+            background: rgba(22, 47, 56, 0.7);
+            color: #f0ded0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateClock() {
+                const clock = document.querySelector('.live-clock');
+                if (clock) {
+                    const now = new Date();
+                    clock.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 30) {
+                    header.style.backgroundColor = '#0e2e38';
+                } else {
+                    header.style.backgroundColor = '#1e3d45';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1><a href="index.html">flute</a></h1>
+        <nav>
+            <ul class="nav">
+                <li><a href="index.html">home</a></li>
+                <li><a href="history.html">history</a></li>
+                <li><a href="makers.html">makers</a></li>
+                <li><a href="players.html">players</a></li>
+                <li><a href="about.html" class="active">about</a></li>
+            </ul>
+        </nav>
+        <div class="live-clock">--:--:--</div>
+    </header>
+
+    <div class="page-header">
+        <h2>About the Flute</h2>
+    </div>
+
+    <div class="content">
+        
+        <h3>What is a Flute?</h3>
+        <p>The flute is a musical instrument from the woodwind family. Unlike other woodwinds that use a reed, the flute produces sound when the player blows air across an open hole. This is called an edge-blown aerophone. The air vibrates inside the tube and creates a soft, clear sound. The modern flute is usually made of metal, but it is still called a woodwind because its ancestors were made of wood.</p>
+        
+        <div class="image-placeholder">
+            <img src="fluteend.jpg">
+        </div>
+
+        <h3>Parts of the Flute</h3>
+        <p>The flute has three main parts:</p>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h5>Headjoint</h5>
+                <p>The headjoint is the top part. It has the lip plate where the player blows. Inside is a plug called the crown that helps tune the flute.</p>
+            </div>
+            <div class="info-card">
+                <h5>Body</h5>
+                <p>The middle part has most of the keys. When the player presses the keys, they open and close holes to change the pitch.</p>
+            </div>
+            <div class="info-card">
+                <h5>Footjoint</h5>
+                <p>The footjoint is the end of the flute. It has a few keys for the lowest notes. Some flutes have a B footjoint for an extra low note.</p>
+            </div>
+        </div>
+
+        <h3>Types of Flutes</h3>
+        <p>The flute family includes many different sizes and pitches. Here are the most common ones:</p>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h5>Concert Flute</h5>
+                <p>The standard flute in C. It is about 67 cm long and is the one most people play. Range: middle C to three octaves higher.</p>
+            </div>
+            <div class="info-card">
+                <h5>Piccolo</h5>
+                <p>Half the size of a concert flute. It plays the highest notes in an orchestra. Sounds one octave higher than written.</p>
+            </div>
+            <div class="info-card">
+                <h5>Alto Flute</h5>
+                <p>Larger and lower than the concert flute. It is in G and has a mellow, warm sound. Often used in flute choirs.</p>
+            </div>
+            <div class="info-card">
+                <h5>Bass Flute</h5>
+                <p>Even larger, in C one octave lower. The headjoint is curved so the player can reach. Very deep and rich sound.</p>
+            </div>
+        </div>
+
+        <h3>How the Flute Makes Sound</h3>
+        <p>When you blow across the mouth hole, the air splits and vibrates inside the tube. This creates a standing wave. By opening and closing the keys, you change the length of the air column, which changes the pitch. The flute can play very soft and very loud. It can also play fast runs and gentle melodies. The sound is pure and sweet, which is why the flute is often used to represent birds and nature in music.</p>
+
+        <h3>Materials</h3>
+        <p>Modern flutes are made from different metals:</p>
+        <ul style="font-size:1.2rem; line-height:2; margin-left:2rem; margin-bottom:2rem;">
+            <li><strong>Nickel Silver:</strong> An alloy of copper, zinc and nickel. Most student flutes are made from this. It is durable and affordable.</li>
+            <li><strong>Silver:</strong> Professional flutes are often made from solid silver. It gives a darker, richer sound.</li>
+            <li><strong>Gold:</strong> Some professional flutes use gold. It has a very warm and complex tone.</li>
+            <li><strong>Platinum:</strong> Very rare and expensive. Used by top soloists for a powerful sound.</li>
+            <li><strong>Wood:</strong> Some players still use wooden flutes for Baroque and folk music.</li>
+        </ul>
+
+
+        <h3>The Flute in Music</h3>
+        <p>The flute is used in many kinds of music. In orchestras, there are usually 2 to 4 flutes and one piccolo. They play melodies and harmonies. In chamber music, the flute is part of the woodwind quintet. In jazz, famous players like Herbie Mann and Hubert Laws made the flute popular. In folk music, many cultures have their own flutes. The flute is also a solo instrument, with many concertos written for it by composers like Mozart, Nielsen, and Ibert.</p>
+
+        <div style="margin: 3rem 0 1rem; padding: 2rem; background: rgba(219, 184, 140, 0.15); border-radius: 30px;">
+            <h4 style="color: #1e3d45; margin-bottom: 1rem;">Did You Know?</h4>
+            <p style="font-size: 1.1rem;">• The flute is one of the few instruments that has not changed much in 150 years. The Böhm system from 1847 is still used today.<br>
+            • The oldest playable flutes are over 9,000 years old and were found in China. They are made from bone.<br>
+            • The flute can play over three octaves. Only a few wind instruments can do that.<br>
+            • In an orchestra, the flutists often play piccolo as well. It requires a different embouchure (mouth position).<br>
+            • The word "flute" comes from the Latin "flare", which means "to blow".</p>
+        </div>
+    </div>
+
+    <footer>
+        <h6>hope this information was useful for you</h6>
+    </footer>
+</body>
+</html>
