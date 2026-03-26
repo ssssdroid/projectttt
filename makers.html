@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flute · makers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: #2c3e4f;
+        }
+        .header {
+            background: #1e3d45;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+        .header h1 a {
+            color: #f2e0c9;
+            text-decoration: none;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav li a {
+            color: #efebdd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav li a:hover {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        .nav li a.active {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        .page-header {
+            position: relative;
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            text-shadow: 2px 2px 10px #1d2e38;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .page-header h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            font-weight: 300;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
+            padding: 1rem 3rem;
+            border-radius: 70px 12px;
+        }
+        .content {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 40px 12px 40px 12px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .video-cover-container {
+            margin: 2rem 0;
+            width: 100%;
+        }
+        .video-cover-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .video-cover-image {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 40px 12px 40px 12px;
+            box-shadow: 0 25px 30px -10px #1d2e38;
+            transition: transform 0.3s ease;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        .video-cover-image:hover {
+            transform: scale(1.02);
+            border-color: #dbb88c;
+        }
+        .video-title {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #1e3d45;
+            font-weight: 500;
+        }
+        .placeholder-note {
+            font-size: 0.85rem;
+            color: #5d6e7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        /* 时钟 */
+        .live-clock {
+            background: #3f5b66;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #f3e3d3;
+        }
+        footer {
+            background: rgba(22, 47, 56, 0.7);
+            color: #f0ded0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateClock() {
+                const clock = document.querySelector('.live-clock');
+                if (clock) {
+                    const now = new Date();
+                    clock.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 30) {
+                    header.style.backgroundColor = '#0e2e38';
+                } else {
+                    header.style.backgroundColor = '#1e3d45';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1><a href="index.html">flute</a></h1>
+        <nav>
+            <ul class="nav">
+                <li><a href="index.html">home</a></li>
+                <li><a href="history.html">history</a></li>
+                <li><a href="makers.html" class="active">makers</a></li>
+                <li><a href="players.html">players</a></li>
+                <li><a href="about.html">about</a></li>
+            </ul>
+        </nav>
+        <div class="live-clock">--:--:--</div>
+    </header>
+
+    <div class="page-header">
+        <h2>How a Flute is Made</h2>
+    </div>
+
+    <div class="content">
+        <div style="margin:2rem 0;">
+    <a href="https://www.youtube.com/watch?v=u50PxE5xBSA" target="_blank">
+        <img src="https://img.youtube.com/vi/u50PxE5xBSA/0.jpg" style="width:100%; max-width:800px; border-radius:40px;">
+    </a>
+    </div>
+        <p class="video-title">How a Flute is Made - YouTube</p>
+        <p class="placeholder-note">Click the image above to watch the video on YouTube.</p>
+    <footer>
+        <h6>hope this information was useful for you</h6>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flute · famous players</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: #2c3e4f;
+        }
+        /* 导航栏 */
+        .header {
+            background: #1e3d45;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+        .header h1 a {
+            color: #f2e0c9;
+            text-decoration: none;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav li a {
+            color: #efebdd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav li a:hover {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        .nav li a.active {
+            border-bottom-color: #dbb88c;
+            color: white;
+        }
+        /* 页面头部视差 */
+        .page-header {
+            position: relative;
+            background-image: url('Flute111.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            text-shadow: 2px 2px 10px #1d2e38;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .page-header h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            font-weight: 300;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
+            padding: 1rem 3rem;
+            border-radius: 70px 12px;
+        }
+        .content {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 40px 12px 40px 12px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .player-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 30px 10px 30px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 8px solid #dbb88c;
+        }
+        .player-image {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+        .player-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50% 20% 50% 20%;
+            box-shadow: 0 15px 20px -8px #3f4e5b;
+        }
+        .player-info {
+            flex: 1;
+        }
+        .player-name {
+            font-size: 2.2rem;
+            color: #1e3d45;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        .player-years {
+            font-size: 1.1rem;
+            color: #8a7b6a;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .player-bio {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #2c3e4f;
+        }
+        .player-bio p {
+            margin-bottom: 1rem;
+        }
+        .placeholder-note {
+            font-size: 0.85rem;
+            color: #a28b78;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+        .live-clock {
+            background: #3f5b66;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #f3e3d3;
+        }
+        footer {
+            background: rgba(22, 47, 56, 0.7);
+            color: #f0ded0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateClock() {
+                const clock = document.querySelector('.live-clock');
+                if (clock) {
+                    const now = new Date();
+                    clock.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 30) {
+                    header.style.backgroundColor = '#0e2e38';
+                } else {
+                    header.style.backgroundColor = '#1e3d45';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1><a href="index.html">flute</a></h1>
+        <nav>
+            <ul class="nav">
+                <li><a href="index.html">home</a></li>
+                <li><a href="history.html">history</a></li>
+                <li><a href="makers.html">makers</a></li>
+                <li><a href="players.html" class="active">players</a></li>
+                <li><a href="about.html">about</a></li>
+            </ul>
+        </nav>
+        <div class="live-clock">--:--:--</div>
+    </header>
+
+    <div class="page-header">
+        <h2>Famous Flute Players</h2>
+    </div>
+
+    <div class="content">
+        <div class="player-card">
+            <div class="player-image">
+                <img src="player1.jpg">
+                <div class="placeholder-note">/* 占位: your-rampal-image.jpg */</div>
+            </div>
+            <div class="player-info">
+                <div class="player-name">Jean-Pierre Rampal</div>
+                <div class="player-years">1922 - 2000 (France)</div>
+                <div class="player-bio">
+                    <p>Jean-Pierre Rampal was a French flautist. He is credited with popularising the flute in the post-World War II years. He recovered many flute compositions from the Baroque era and inspired contemporary composers to create new works for the flute. His father was also a flautist and gave him early lessons. Rampal studied medicine before fleeing to Paris during the war to study at the Paris Conservatoire, graduating with first prize in just five months. He became principal flute at the Paris Opera and toured the world with harpsichordist Robert Veyron-Lacroix. He recorded over 400 albums and wrote an autobiography "Music, My Love". [citation:1][citation:3][citation:9]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="player-card">
+            <div class="player-image">
+                <img src="player2.jpg" alt="James Galway">
+                <div class="placeholder-note">/* 占位: your-galway-image.jpg */</div>
+            </div>
+            <div class="player-info">
+                <div class="player-name">Sir James Galway</div>
+                <div class="player-years">1939 - present (Northern Ireland)</div>
+                <div class="player-bio">
+                    <p>James Galway is an Irish flutist from Belfast, known as "The Man with the Golden Flute". He started playing as a child and by age 10 he won all three categories in the Irish Flute Championships. He studied in London and Paris with Jean-Pierre Rampal. He played with the BBC Symphony, London Symphony, and Royal Philharmonic before becoming principal flute of the Berlin Philharmonic in 1969 under Herbert von Karajan. In 1975 he started a solo career and became an international star. His version of John Denver's "Annie's Song" was a hit in 1978. He played on the Lord of the Rings film soundtracks. He was knighted in 2001. He is known for blending classical, Irish folk, and popular music. [citation:2][citation:8]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="player-card">
+            <div class="player-image">
+                <img src="player3.jpg" alt="Emmanuel Pahud">
+                <div class="placeholder-note">/* 占位: your-pahud-image.jpg */</div>
+            </div>
+            <div class="player-info">
+                <div class="player-name">Emmanuel Pahud</div>
+                <div class="player-years">1970 - present (Switzerland/France)</div>
+                <div class="player-bio">
+                    <p>Emmanuel Pahud is a Franco-Swiss flautist. He was born in Geneva and started playing at age four after hearing a neighbor practice Mozart. He studied at the Paris Conservatoire and won many international competitions. At age 22, he was appointed principal flute of the Berlin Philharmonic by Claudio Abbado, a position he still holds. He is known for his "prince of the flute" image and his elegant sound. He performs around 160 concerts a year, combining orchestral work with a busy solo career. He has recorded extensively for EMI Classics, from Baroque to contemporary music. He took an 18-month sabbatical in 2000 to teach in Geneva and perform worldwide. [citation:4][citation:10]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="player-card">
+            <div class="player-image">
+                <img src="player4.jpg" alt="Aurele Nicolet">
+                <div class="placeholder-note">/* 占位: your-nicolet-image.jpg */</div>
+            </div>
+            <div class="player-info">
+                <div class="player-name">Aurele Nicolet</div>
+                <div class="player-years">1926 - 2016 (Switzerland)</div>
+                <div class="player-bio">
+                    <p>Aurele Nicolet was a Swiss flutist. He studied in Zurich and at the Paris Conservatoire with Marcel Moyse. He won the Geneva International Competition and became principal flute of the Berlin Philharmonic from 1950 to 1959. After leaving the orchestra, he taught at the Berlin Conservatory and pursued a solo career. He became one of the most influential flute teachers of the 20th century. Many famous flutists studied with him, including Emmanuel Pahud. He was known for his deep musicality and his interpretations of Bach. [citation:1][citation:4]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="player-card">
+            <div class="player-image">
+                <img src="player5.jpg" alt="Mimi Stillman">
+                <div class="placeholder-note">/* 占位: your-stillman-image.jpg */</div>
+            </div>
+            <div class="player-info">
+                <div class="player-name">Mimi Stillman</div>
+                <div class="player-years">1976 - present (USA)</div>
+                <div class="player-bio">
+                    <p>Mimi Stillman is an American flutist. At age 12, she was the youngest wind player ever admitted to the Curtis Institute of Music, where she studied with the legendary Julius Baker. She won the Young Concert Artists International Auditions, the youngest flutist to do so. The New York Times called her "not only a consummate and charismatic performer, but also a scholar." She has performed as soloist with The Philadelphia Orchestra and at Carnegie Hall. She founded the Dolce Suono Ensemble and has given over 70 world premieres. She also holds a Master's degree in history from the University of Pennsylvania and has written scholarly articles on music. [citation:5]</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin: 3rem 0 1rem; padding: 2rem; background: rgba(219, 184, 140, 0.15); border-radius: 30px;">
+            <h3 style="color: #1e3d45; margin-bottom: 1rem;">More about flute players</h3>
+            <p style="font-size: 1.1rem; line-height: 1.7;">Other great flutists include Severino Gazzelloni (Italy), who pioneered contemporary music techniques like microtones [citation:1]; Denis Bouriakov (Crimea/USA), current principal flute of the Los Angeles Philharmonic known for transcribing violin works for flute [citation:6]; and Sharon Bezaly (Israel), called "a gift from God to the flute" by The Times, famous for her circular breathing [citation:7]. The flute has a rich tradition with players from every continent.</p>
+        </div>
+    </div>
+    <footer>
+        <h6>hope this information was useful for you</h6>
+    </footer>
+</body>
+</html>
